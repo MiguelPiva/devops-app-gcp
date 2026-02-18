@@ -32,7 +32,7 @@ resource "google_container_node_pool" "devops_nodes" {
     preemptible  = true  # Custos reduzidos
     machine_type = "e2-small"
     disk_size_gb = 20
-    disk_type = "pd_standard"
+    disk_type = "pd-standard"
     
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",
