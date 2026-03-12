@@ -29,18 +29,18 @@ const httpRequestsTotal = new client.Counter({
 // Middleware para métricas
 app.use((req, res, next) => {
   const start = Date.now();
-
+  
   res.on('finish', () => {
     const duration = (Date.now() - start) / 1000;
     httpRequestDuration
       .labels(req.method, res.statusCode)
       .observe(duration);
-
+    
     httpRequestsTotal
       .labels(req.method, res.statusCode)
       .inc();
   });
-
+  
   next();
 });
 
@@ -96,4 +96,4 @@ if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
   });
-};
+}
